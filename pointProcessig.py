@@ -130,6 +130,6 @@ if __name__ == '__main__':
         target_arr = ImageIO.load_image(args.histogramMatch)
         img_arr = histogram_matching(img_arr, target_arr)
     if args.saturation:
-        img_arr = change_saturation(img_arr, 0.5)#args.saturation)
+        img_arr = change_saturation(img_arr, args.saturation)
 
     ImageIO.save_image(args.output, img_arr)
