@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding=utf-8 -*-
 import sys
 
@@ -25,8 +25,8 @@ def change_gamma(arr, amount):
 
 def change_saturation(arr, amount):
     output = np.ndarray(arr.shape, dtype=np.uint8)
-    for r in xrange(output.shape[0]):
-        for c in xrange(output.shape[1]):
+    for r in range(output.shape[0]):
+        for c in range(output.shape[1]):
             [red, green, blue] = arr[r, c, :]
             rgb_max = int(max(red, green, blue))
             rgb_min = int(min(red, green, blue))
@@ -67,7 +67,7 @@ def generate_histogram(arr):
 
 def get_pdf(arr):
     histo = generate_histogram(arr)
-    for i in xrange(1, 256):
+    for i in range(1, 256):
         histo[i] += histo[i - 1]
     max_value = histo[-1]
     return [float(t) / max_value for t in histo]
@@ -75,7 +75,7 @@ def get_pdf(arr):
 
 def histogram_equalization(arr):
     output = np.ndarray(arr.shape, dtype=np.uint8)
-    for i in xrange(3):
+    for i in range(3):
         slice_band = arr[:, :, i]
         slice_pdf = get_pdf(slice_band)
         for x in np.nditer(slice_band, op_flags=['readwrite']):
@@ -86,14 +86,14 @@ def histogram_equalization(arr):
 
 def histogram_matching(arr, target):
     output = np.ndarray(arr.shape, dtype=np.uint8)
-    for i in xrange(3):
+    for i in range(3):
         slice_band = arr[:, :, i]
         target_band = target[:, :, i]
         slice_pdf = get_pdf(slice_band)
         target_pdf = get_pdf(target_band)
         lut = [0] * 256
         gj = 0
-        for gi in xrange(256):
+        for gi in range(256):
             while target_pdf[gj] < slice_pdf[gi] and gj < 255:
                 gj += 1
             lut[gi] = gj

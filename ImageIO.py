@@ -9,13 +9,13 @@ import sys
 try:
     from scipy import misc
 except ImportError:
-    print "Scipy import error."
+    print("Scipy import error.")
     sys.exit(-0x2)
 
 
 def load_image(filename):
     if not os.path.exists(filename):
-        print "No such file or directory %s" % filename
+        print("No such file or directory %s" % filename)
         sys.exit(-0x3)
     return misc.imread(filename)
 

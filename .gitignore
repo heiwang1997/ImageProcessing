@@ -1,3 +1,4 @@
 *.pyc
 img/
 *.bmp
+*.ipynb
